@@ -32,12 +32,12 @@ jobs:
           wait-on: http://localhost:8000
       - name: deploy app
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ','), '#skip') }}
-        uses: akhileshns/heroku-deploy@v3.9.9
+        uses: akhileshns/heroku-deploy@v3.11.10
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "fs-phonebook-tm" #Must be unique in Heroku
           heroku_email: ${{secrets.HEROKU_EMAIL}}
-          healthcheck: "https://fs-phonebook-tm.herokuapp.com/health"
+          healthcheck: "https://fs-phonebook-tm.herokuapp.com/api/health"
           checkstring: "ok"  # This version of Heroku Deploy seems to have bug that rollback is done twice if checkstring is used.
           rollbackonhealthcheckfailed: true
           delay: 15
