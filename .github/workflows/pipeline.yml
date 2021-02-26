@@ -43,7 +43,7 @@ jobs:
           delay: 15
       - name: bump version and push tag
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ','), '#skip') }}
-        uses: anothrNick/github-tag-action@1.33.0
+        uses: anothrNick/github-tag-action@1.34.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: "patch"
